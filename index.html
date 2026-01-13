@@ -6,8 +6,35 @@
     <title>ABC ESTATES | Luxury Real Estate</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <!-- EmailJS Integration -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS Public Key
+       })();
+    </script>
+
+    <style>
+        /* Ensure preloader and back-to-top styles are applied even if missing in CSS */
+        :root {
+            --black: #000000;
+            --charcoal: #121212;
+            --gold: #D4AF37;
+            --gray: #aaaaaa;
+            --white: #ffffff;
+        }
+    </style>
 </head>
 <body>
+
+    <!-- Luxury Preloader -->
+    <div id="preloader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--black); z-index: 10000; display: flex; justify-content: center; align-items: center; transition: 0.8s ease;">
+        <div class="loader-logo" style="text-align: center;">
+            <div class="logo" style="font-size: 2rem; letter-spacing: 10px; color: var(--gold); font-family: 'Playfair Display', serif;">ABC<span style="color: var(--white);">ESTATES</span></div>
+            <div style="width: 0%; height: 2px; background: var(--gold); margin-top: 10px; transition: 1.5s;" id="loaderBar"></div>
+        </div>
+    </div>
 
     <div id="leadPopup" class="popup-overlay">
         <div class="popup-content" id="popupContent">
@@ -31,7 +58,8 @@
         </div>
     </div>
 
-    <a href="https://wa.me/910000000000?text=Hello%20ABC%20Estates%2C%20I%20am%20interested%20in%20your%20luxury%20portfolio.%20Please%20share%20more%20details." class="whatsapp-float" target="_blank">
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/91XXXXXXXXXX?text=I%27m%20interested%20in%20a%20property" class="whatsapp-float" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Chat with ABC Estates">
     </a>
 
@@ -62,7 +90,7 @@
             <p>Bespoke real estate services for India’s most discerning clientele.</p>
             <div class="hero-btns">
                 <a href="#listings" class="btn btn-gold">View Collection</a>
-                <a href="tel:+910000000000" class="btn btn-outline">Call Advisor</a>
+                <button onclick="triggerDemoPopup()" class="btn btn-outline">Request Exclusive Access</button>
             </div>
         </div>
     </section>
@@ -104,6 +132,7 @@
                             <li>Sea View</li>
                             <li>Concierge</li>
                         </ul>
+                        <button class="btn btn-outline" style="margin-top: 20px; width: 100%;" onclick="openPropertyModal('sky-atrium')">View Details</button>
                     </div>
                 </div>
 
@@ -120,6 +149,43 @@
                             <li>Home Automation</li>
                             <li>Green View</li>
                         </ul>
+                        <button class="btn btn-outline" style="margin-top: 20px; width: 100%;" onclick="openPropertyModal('emerald-manor')">View Details</button>
+                    </div>
+                </div>
+
+                <!-- New Listing 1 -->
+                <div class="listing-card">
+                    <div class="listing-img" style="background-image: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=80')">
+                        <div class="listing-overlay">₹12.50 Cr</div>
+                    </div>
+                    <div class="listing-details">
+                        <small>Assagao, Goa</small>
+                        <h3>Casa Del Mar</h3>
+                        <p>Mediterranean-style private villa with a sustainable garden and infinity pool.</p>
+                        <ul class="amenities">
+                            <li>3800 sqft</li>
+                            <li>Private Pool</li>
+                            <li>Fully Furnished</li>
+                        </ul>
+                        <button class="btn btn-outline" style="margin-top: 20px; width: 100%;" onclick="openPropertyModal('casa-del-mar')">View Details</button>
+                    </div>
+                </div>
+
+                <!-- New Listing 2 -->
+                <div class="listing-card">
+                    <div class="listing-img" style="background-image: url('https://images.unsplash.com/photo-1512915922611-e211c3f350c1?auto=format&fit=crop&w=800&q=80')">
+                        <div class="listing-overlay">₹32.00 Cr</div>
+                    </div>
+                    <div class="listing-details">
+                        <small>Lutyens, Delhi</small>
+                        <h3>The Imperial Estate</h3>
+                        <p>Colonial-style heritage bungalow with sprawling lawns and a private library.</p>
+                        <ul class="amenities">
+                            <li>7200 sqft</li>
+                            <li>Heritage Site</li>
+                            <li>High Security</li>
+                        </ul>
+                        <button class="btn btn-outline" style="margin-top: 20px; width: 100%;" onclick="openPropertyModal('imperial-estate')">View Details</button>
                     </div>
                 </div>
             </div>
@@ -135,6 +201,50 @@
         </div>
     </section>
 
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials" style="padding: 100px 5%; background: var(--black);">
+        <div class="container" style="text-align: center;">
+            <span class="eyebrow" style="color: var(--gold);">Client Experiences</span>
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin: 20px 0;">Voices of Discerning Owners</h2>
+            <div class="grid" style="margin-top: 50px;">
+                <div class="testimonial-card" style="padding: 40px; border: 1px solid #222; background: var(--charcoal);">
+                    <p style="font-style: italic; color: var(--gray); margin-bottom: 20px;">"ABC Estates redefined my expectations of luxury. Their concierge approach to finding my penthouse in Worli was flawless."</p>
+                    <h5 style="color: var(--gold); letter-spacing: 1px;">VIKRAM M.</h5>
+                    <small>CEO, Fortune 500 India</small>
+                </div>
+                <div class="testimonial-card" style="padding: 40px; border: 1px solid #222; background: var(--charcoal);">
+                    <p style="font-style: italic; color: var(--gray); margin-bottom: 20px;">"The off-market access they provide is truly exclusive. I found a heritage property that never even hit the public listings."</p>
+                    <h5 style="color: var(--gold); letter-spacing: 1px;">ANANYA S.</h5>
+                    <small>International Art Curator</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Property Investment Calculator -->
+    <section id="calculator" class="calc-section" style="padding: 100px 5%; background: var(--charcoal);">
+        <div class="container" style="max-width: 600px; margin: 0 auto; text-align: center;">
+            <span class="eyebrow" style="color: var(--gold);">Financial Planning</span>
+            <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 30px;">Investment Estimator</h2>
+            <div class="calc-box" style="background: #1a1a1a; padding: 40px; border: 1px solid #333;">
+                <div style="margin-bottom: 20px; text-align: left;">
+                    <label style="font-size: 0.8rem; color: var(--gray);">Property Value (₹ Cr)</label>
+                    <input type="number" id="propAmount" value="25" min="1" step="0.1" style="width: 100%; padding: 10px; background: #080808; border: 1px solid var(--gold); color: white; margin-top: 5px;">
+                </div>
+                <div style="margin-bottom: 20px; text-align: left;">
+                    <label style="font-size: 0.8rem; color: var(--gray);">Down Payment (%)</label>
+                    <input type="number" id="downPayment" value="20" min="0" max="100" style="width: 100%; padding: 10px; background: #080808; border: 1px solid var(--gold); color: white; margin-top: 5px;">
+                </div>
+                <button onclick="calculateInvestment()" class="btn btn-gold" style="width: 100%;">Calculate Outlay</button>
+                <div id="calcResult" style="margin-top: 30px; display: none;">
+                    <h4 style="color: var(--gold);">Estimated Loan: ₹ <span id="loanAmt">0</span> Cr</h4>
+                    <p style="font-size: 0.8rem; color: var(--gray);">*Subject to bank approval and current interest rates.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
     <section id="blog" class="blog-section" style="padding: 100px 5%;">
         <div class="container">
             <div class="section-title" style="text-align: center; margin-bottom: 50px;">
@@ -172,20 +282,81 @@
         <div class="footer-grid">
             <div class="footer-about">
                 <div class="logo">ABC<span>ESTATES</span></div>
-                <p>Address: 2J/49, B.P. NIT-2, Faridabad, Haryana</p>
-                <p>Phone: +91 0000 000000</p>
-                <p>Email: info@abc-estates.com</p>
+                <p>Address: Premium Business Park, BKC, Mumbai, Maharashtra</p>
+                <p>Phone: +91 XXXXX XXXXX</p>
+                <p>Email: concierge@abc-estates.com</p>
             </div>
             <div class="footer-nav">
                 <h4>Quick Links</h4>
                 <a href="#home">Home</a>
                 <a href="#listings">Current Listings</a>
-                <a href="mailto:info@abc-estates.com">Work With Us</a>
+                <a href="mailto:concierge@abc-estates.com">Work With Us</a>
                 <a href="#home">Privacy Policy</a>
             </div>
         </div>
         <div class="bottom-bar">© 2026 ABC ESTATES. All Rights Reserved.</div>
     </footer>
+
+    <!-- Property Detail Modal -->
+    <div id="propertyModal" class="popup-overlay">
+        <div class="popup-content" style="max-width: 800px; text-align: left;">
+            <button class="close-popup" onclick="closePropertyModal()">✕ Close</button>
+            <div id="modalGallery" style="height: 300px; background: url('') center/cover; margin-bottom: 20px; border: 1px solid var(--gold);"></div>
+            <h2 id="modalTitle" style="font-family: 'Playfair Display', serif; color: var(--gold);"></h2>
+            <p id="modalDesc" style="color: var(--gray); margin: 15px 0;"></p>
+            <div class="hero-btns" style="justify-content: flex-start;">
+                <a href="#contact" class="btn btn-gold" onclick="closePropertyModal()">Enquire Now</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back-to-Top Button -->
+    <button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" style="position: fixed; bottom: 100px; right: 35px; background: none; border: 1px solid var(--gold); color: var(--gold); width: 50px; height: 50px; border-radius: 50%; cursor: pointer; display: none; z-index: 999; font-size: 1.2rem;">↑</button>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', () => {
+            const loaderBar = document.getElementById('loaderBar');
+            loaderBar.style.width = '100%';
+            setTimeout(() => {
+                document.getElementById('preloader').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('preloader').style.display = 'none';
+                }, 800);
+            }, 1500);
+        });
+
+        // Back-to-top button visibility
+        window.addEventListener('scroll', () => {
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                backToTop.style.display = 'block';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+
+        // Investment Calculator
+        function calculateInvestment() {
+            const propValue = parseFloat(document.getElementById('propAmount').value) || 0;
+            const downPerc = parseFloat(document.getElementById('downPayment').value) || 0;
+            if (propValue <= 0 || downPerc < 0 || downPerc > 100) {
+                alert("Please enter valid values.");
+                return;
+            }
+            const loan = propValue * (1 - downPerc / 100);
+            document.getElementById('loanAmt').textContent = loan.toFixed(2);
+            document.getElementById('calcResult').style.display = 'block';
+        }
+
+        // Placeholder functions (to avoid console errors)
+        function closePopup() { document.getElementById('leadPopup').style.display = 'none'; }
+        function handleFormSubmit(e) { e.preventDefault(); alert('Form submission handled.'); }
+        function toggleMenu() {}
+        function triggerDemoPopup() { document.getElementById('leadPopup').style.display = 'flex'; }
+        function openPropertyModal(id) { document.getElementById('propertyModal').style.display = 'flex'; }
+        function closePropertyModal() { document.getElementById('propertyModal').style.display = 'none'; }
+    </script>
 
     <script src="script.js"></script>
 </body>
